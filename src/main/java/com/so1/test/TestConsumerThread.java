@@ -78,13 +78,13 @@ public class TestConsumerThread extends Thread {
                         System.out.println("[" + threadId + "]Received: " + text);
                         
                         // mm. 21102017 codigo de conversion json a obj persona
-                        //ObjectMapper mapper = new ObjectMapper();
-                        //Persona objetoPersona = mapper.readValue(text, Persona.class);
+                        ObjectMapper mapper = new ObjectMapper();
+                        Persona objetoPersona = mapper.readValue(text, Persona.class);
 //
-//                        System.out.println("Nombre:" + objetoPersona.getNombre());
+                        System.out.println("Nombre:" + objetoPersona.getNombre());
 //
 //                        // mm. 21102017 codigo de envio de obj persona a tomcat (consumo de restful en tomcat)
-                        /*Persona response = new Persona();
+                        Persona response = new Persona();
                         try {
                             Client client;
                             client = Client.create();
@@ -93,6 +93,8 @@ public class TestConsumerThread extends Thread {
 
                             WebResource service = client
                                     .resource("http://172.17.0.3:8080/ServicioWeb/rest/enviarDatos");
+                            WebResource servicio = client
+                                    .resource("http://185.168.1.10/ServicioWeb/rest/enviarDatos");
 
                             response = service
                                     .type(MediaType.APPLICATION_JSON)
@@ -106,7 +108,7 @@ public class TestConsumerThread extends Thread {
                             System.out.println("id:" + response.getId());
                             System.out.println("Nombre:" + response.getNombre());
                             System.out.println("edad:" + response.getEdad());
-                        }*/
+                        }
 
                     } else {
                         System.out.println("[" + threadId + "]Received: " + message);
